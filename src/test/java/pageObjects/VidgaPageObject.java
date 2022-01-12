@@ -127,7 +127,7 @@ public class VidgaPageObject extends BasePage {
     public void addLayer() {
         addingLayer.click();
         waitForElementToAppear(By.id("next_button_layer_options"));
-        useJavaScriptExecutor(nextButtonMeasure);
+        javaScriptExecutorClick(nextButtonMeasure);
 
     }
 
@@ -140,7 +140,7 @@ public class VidgaPageObject extends BasePage {
 
     public void add15CM(){
 
-        useJavaScriptExecutor(adding15cm);
+        javaScriptExecutorClick(adding15cm);
         Assert.assertTrue(adding15cm.isSelected());
         System.out.println("adding 15 cm");
         nextButtonAdditional.click();
@@ -148,7 +148,7 @@ public class VidgaPageObject extends BasePage {
     }
 
     public void chooseCeiling(){
-        ceilingPicker.click();
+        javaScriptExecutorClick(ceilingPicker);
 
     }
 

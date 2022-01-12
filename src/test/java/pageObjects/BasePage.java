@@ -7,7 +7,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import testsVidga.BaseTest;
 
 public class BasePage {
 
@@ -34,7 +33,7 @@ public class BasePage {
       this.driver.switchTo().frame(element);
   }
 
-    public void useJavaScriptExecutor(WebElement element){
+    public void javaScriptExecutorClick(WebElement element){
         JavascriptExecutor jse = (JavascriptExecutor) this.driver;
         jse.executeScript("arguments[0].click()", element);
     }
