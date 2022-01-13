@@ -33,7 +33,6 @@ public class FirstTest extends BaseTest {
         vidga.chooseCeiling();
         vidga.verifySummaryPresent();
 
-
     }
 }
 
