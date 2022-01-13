@@ -31,7 +31,7 @@ public class VidgaPageObject extends BasePage {
     @FindBy (xpath ="//*[@id='root']/div/div[1]/img")
     WebElement introPicutre;
 
-    @FindBy(css = "#root > div > div.WhatsIncluded_wrapper__2Y0in > h3")
+    @FindBy(css = "#root > div > div.WhatsIncluded_wrapper__17GYG > h3")
     WebElement summary;
     /*******************************/
 
@@ -94,6 +94,8 @@ public class VidgaPageObject extends BasePage {
 
     /*********************/
 
+    @FindBy(xpath = "/html/body/iframe")
+    WebElement silentFrame;
     /**INTRODUCTORY METHODS*/
 
     public VidgaPageObject(WebDriver driver) {
@@ -107,8 +109,8 @@ public class VidgaPageObject extends BasePage {
     }
 
     public void verifySwitchFrame() {
-        waitForElementToAppear(By.id("application-iframe"));
-        switchToFrame(testFrame);
+        waitForElementToAppear(By.id("vidga-application"));
+        switchToFrame(prodFrame);
         waitForElementToAppear(By.xpath("//*[@id='root']/div/div[1]/img"));
         Assert.assertTrue(introPicutre.isDisplayed());
         if ((introPicutre.isDisplayed())){System.out.println("picture");}
@@ -125,7 +127,8 @@ public class VidgaPageObject extends BasePage {
     /**INTERCEPTING ELEMENTS METHODS*/
 
     public void addLayer() {
-        addingLayer.click();
+        waitForElementToBeClickable(By.id ("add_layer_button"));
+        javaScriptExecutorClick(addingLayer);
         waitForElementToAppear(By.id("next_button_layer_options"));
         javaScriptExecutorClick(nextButtonMeasure);
 
@@ -156,6 +159,11 @@ public class VidgaPageObject extends BasePage {
         //waitForElementToAppear(By.cssSelector("#root > div > div.WhatsIncluded_wrapper__2Y0in > h3"));
         Assert.assertTrue(summary.isDisplayed());
         System.out.println("Summary of the products is displayed");
+    }
+
+    public void switchToSilentFrame (){
+        switchToFrame(silentFrame);
+
     }
 
 

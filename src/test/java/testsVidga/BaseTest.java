@@ -49,7 +49,7 @@ public class BaseTest {
     public WebDriver getDriver() {
         return driver;
     }
-
+/*
     public void getAddress(String address) {
         this.driver.get(address);
     }
@@ -57,8 +57,7 @@ public class BaseTest {
     public void managePage() {
         this.driver.manage().window().maximize();
     }
-
-
+*/
 
 }
 

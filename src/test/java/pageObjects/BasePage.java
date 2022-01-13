@@ -29,11 +29,11 @@ public class BasePage {
         this.driver.manage().window().maximize();
     }
 */
-  public void switchToFrame(WebElement element){
+    protected void switchToFrame(WebElement element){
       this.driver.switchTo().frame(element);
   }
 
-    public void javaScriptExecutorClick(WebElement element){
+    protected void javaScriptExecutorClick(WebElement element){
         JavascriptExecutor jse = (JavascriptExecutor) this.driver;
         jse.executeScript("arguments[0].click()", element);
     }
@@ -45,6 +45,14 @@ public class BasePage {
     protected void waitForElementToBeClickable(By locator) {
         wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
+    public void getAddress(String address) {
+        this.driver.get(address);
+    }
+
+    public void managePage() {
+        this.driver.manage().window().maximize();
+    }
+
 
 
 

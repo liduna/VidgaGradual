@@ -6,16 +6,20 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
-public class IkeaTitlePage extends BasePage {
+public class IkeaTitlePageObject extends BasePage {
 
 
     @FindBy(id="f2e60fe1-c4f4-11eb-9eb1-7b097c951065")
     WebElement pageTitle;
     @FindBy(className = "pub__curated-gallery__item")
     WebElement pictureTitle;
-    public IkeaTitlePage(WebDriver driver) {
+
+
+    public IkeaTitlePageObject(WebDriver driver) {
         super(driver);
     }
+
+
     public void verifyIsPresent() {
         waitForElementToAppear(By.id("f2e60fe1-c4f4-11eb-9eb1-7b097c951065"));
         Assert.assertTrue(pageTitle.isDisplayed());

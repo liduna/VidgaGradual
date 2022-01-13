@@ -1,8 +1,7 @@
 package testsVidga;
 
-import org.openqa.selenium.JavascriptExecutor;
 import org.testng.annotations.Test;
-import pageObjects.IkeaTitlePage;
+import pageObjects.IkeaTitlePageObject;
 import pageObjects.VidgaPageObject;
 
 public class FirstTest extends BaseTest {
@@ -10,21 +9,21 @@ public class FirstTest extends BaseTest {
 
     @Test
     public void ikeaHomepageTests() {
-        IkeaTitlePage ikea = new IkeaTitlePage(getDriver());
-        getAddress("https://www.ikea.se");
-        managePage();
+        IkeaTitlePageObject ikea = new IkeaTitlePageObject(getDriver());
+        ikea.getAddress  ("https://www.ikea.se");
+        ikea.managePage();
         ikea.verifyIsPresent();
         ikea.clickOnPictureTitle();
 
     }
 
     @Test
-    public void twoLayersAdditionalCeiling() {
+    public void firstTestinginLive() {
 
 
         VidgaPageObject vidga = new VidgaPageObject(getDriver());
-        getAddress(" https://ikea-aoa-dev.cybercomhosting.com/addon-app/windowsolutions/master/1.4.1-16-g07e5f8b/m2/");
-        managePage();
+        vidga.getAddress("https://www.ikea.com/se/sv/planner/vidga-planner/");
+        vidga.managePage();
         vidga.verifyPageIsLoaded();
         vidga.verifySwitchFrame();
         vidga.addLayer();
