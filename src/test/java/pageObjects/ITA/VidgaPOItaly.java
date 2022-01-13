@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import pageObjects.BasePage;
 
@@ -77,7 +78,7 @@ public class VidgaPOItaly extends BasePage {
     WebElement wallPicker;
 
     @FindBy(id = "single")
-    WebElement singleRailswall;
+    WebElement single_railing;
 
     @FindBy(id = "wall_6cm")
     WebElement fitting6cm;
@@ -86,10 +87,10 @@ public class VidgaPOItaly extends BasePage {
     WebElement fitting12cm;
 
     @FindBy(id = "single_single")
-    WebElement singleRailsTwoSpar;
+    WebElement single_single_railing;
 
-    @FindBy(id = "triple_single")
-    WebElement threeRails;
+    @FindBy(id = "triple")
+    WebElement triple_railing;
 
     @FindBy(id = "white")
     WebElement colourPicker;
@@ -99,12 +100,34 @@ public class VidgaPOItaly extends BasePage {
 
     @FindBy (id ="silver")
     WebElement silver_picker;
+/*
+    @FindBy (css = "#root > div > div.Layer_wrapper__3hCrJ > div > div:nth-child(1) > ikea-component > div > div.Dropdown__button")//#root > div > div.Layer_wrapper__3hCrJ > div > div:nth-child(2) > ikea-component > div > div.Dropdown__button
+    WebElement drop_down_btn;
+*/
+    @FindBy (className = "Dropdown__button")
+    WebElement drop_down_btn;
+
+    @FindBy (className ="dropdown-option")//#root > div > div.Layer_wrapper__3hCrJ > div > div:nth-child(2) > ikea-component > div > div.Dropdown__list
+    WebElement drop_down_list;
 
 
 
+    @FindBy (xpath = "//*[@id=\"root\"]/div/div[1]/div/div[1]/ikea-component/div/div[2]/ikea-component/div/div[1]/div[1]/div/ikea-component-body/ikea-component-body/dropdown-option[1]")
+    WebElement curtains;
+
+    @FindBy (xpath = "//*[@id=\"root\"]/div/div[1]/div/div[1]/ikea-component/div/div[1]/span/div")
+    WebElement first_layer_dropdown;
+
+    @FindBy (xpath = "//*[@id=\"root\"]/div/div[1]/div/div[2]/ikea-component/div/div[1]/span/div")
+    WebElement second_layer_dropdown;
 
 
 
+    ////*[@id="root"]/div/div[1]/div/div[1]/ikea-component/div/div[1]/span/div
+    //   //*[@id="root"]/div/div[1]/div/div[2]/ikea-component/div/div[1]/span/div
+
+    @FindBy (xpath = "//*[@id=\"root\"]/div/div[1]/div/div[1]/ikea-component/div/div[2]/ikea-component/div/div[1]/div[1]/div/ikea-component-body/ikea-component-body/dropdown-option[2]")
+    WebElement panels;
 
 
     /**INTRODUCTORY METHODS*/
@@ -154,12 +177,15 @@ public class VidgaPOItaly extends BasePage {
 
     }
 
-    public void confirmMeasurementsNoInput(){
-        waitForElementToAppear(By.id("next_button_measurements"));
-        if (btn_next_measurements.isDisplayed()){System.out.println("next Measurements");}
 
+        public void confirmMeasurementsNoInput () {
+            waitForElementToAppear(By.id("next_button_measurements"));
+            if (btn_next_measurements.isDisplayed()) {
+                System.out.println("next Measurements");
+            }
 
-    }
+        }
+
 
     public void add15CM(){
 
@@ -182,12 +208,60 @@ public class VidgaPOItaly extends BasePage {
         System.out.println("Summary of the products is displayed");
     }
 
-    public void chooseSilver(){
-        javaScriptExecutorClick(silver_picker);
+    public void choosTripleRailings(){
+        javaScriptExecutorClick(triple_railing);
 
+        //triple_railing.click();
     }
 
 
 
+    /**METHODS TYPICAL FOR ITALY ET ALL: -PANELS,SILVER *****/
+
+    public void selectPanelOnFirst(){
+        waitForElementToBeClickable(By.id ("add_layer_button"));
+        javaScriptExecutorClick(adding_Layer);
+        javaScriptExecutorClick(drop_down_btn);
+
+        //javaScriptExecutorClick(dropDown2);
+        waitForElementToBeClickable(By.xpath
+                ("//*[@id=\"root\"]/div/div[1]/div/div[1]/ikea-component/div/div[2]/" +
+                        "ikea-component/div/div[1]/div[1]/div/ikea-component-body/ikea-component-body/dropdown-option[2]"));
+        //panels.click();
+        javaScriptExecutorClick(panels);
+        System.out.println(panels.getText());
+
+
+
+        waitForElementToAppear(By.id("next_button_layer_options"));
+        javaScriptExecutorClick(btn_next_measurements);
+
+
+    }
+    public void selectPanelOnSecond() {
+        waitForElementToBeClickable(By.id("add_layer_button"));
+        javaScriptExecutorClick(drop_down_btn);
+
+        //javaScriptExecutorClick(dropDown2);
+        waitForElementToBeClickable(By.xpath
+                ("//*[@id=\"root\"]/div/div[1]/div/div[1]/ikea-component/div/div[2]/" +
+                        "ikea-component/div/div[1]/div[1]/div/ikea-component-body/ikea-component-body/dropdown-option[2]"));
+        panels.click();
+        System.out.println(panels.getText());
+        javaScriptExecutorClick(adding_Layer);
+
+
+        waitForElementToBeClickable(By.xpath("//*[@id=\"root\"]/div/div[1]/div/div[2]/ikea-component/div/div[1]/span/div"));
+        second_layer_dropdown.click();
+
+
+        waitForElementToAppear(By.id("next_button_layer_options"));
+        javaScriptExecutorClick(btn_next_measurements);
+
+    }
+    public void chooseSilver(){
+        javaScriptExecutorClick(silver_picker);
+
+    }
 
 }

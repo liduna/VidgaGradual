@@ -1,12 +1,11 @@
-package testsVidga;
+package testsVidga.testSWE;
 
 import org.testng.annotations.Test;
-import pageObjects.ITA.VidgaPOItaly;
 import pageObjects.SWE.IkeaTitlePageObject;
 import pageObjects.SWE.VidgaPOSweden;
+import testsVidga.BaseTest;
 
-public class FirstTest extends BaseTest {
-
+public class testBasicFlowSWE extends BaseTest {
 
     @Test
     public void ikeaHomepageTests() {
@@ -32,27 +31,4 @@ public class FirstTest extends BaseTest {
         vidgaSE.verifySummaryPresent();
 
     }
-
-
-    @Test
-    public void first_test_Italian_Live() {
-
-
-        VidgaPOItaly vidgaIT = new VidgaPOItaly(getDriver());
-        vidgaIT.navigateToPage(vidgaIT.getAddres());
-        vidgaIT.verifyPageIsLoaded();
-        vidgaIT.verifySwitchFrame();
-        vidgaIT.addLayer();
-        vidgaIT.confirmMeasurementsNoInput();
-        vidgaIT.add15CM();
-        vidgaIT.chooseCeiling();
-        vidgaIT.chooseSilver();
-        vidgaIT.verifySummaryPresent();
-
-    }
 }
-
-
-
-
-
