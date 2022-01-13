@@ -1,15 +1,16 @@
-package pageObjects;
+package pageObjects.ITA;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import pageObjects.BasePage;
 
-public class VidgaPageObject extends BasePage {
+public class VidgaPOItaly extends BasePage {
+
+    private String PAGE_ADDRESS_ITA = "https://www.ikea.com/it/it/planner/vidga-planner//";
 
     /**THESE ARE INTRODUCTORY ELEMENTS*/
 
@@ -33,43 +34,44 @@ public class VidgaPageObject extends BasePage {
 
     @FindBy(css = "#root > div > div.WhatsIncluded_wrapper__17GYG > h3")
     WebElement summary;
-    /*******************************/
+
 
 
 
     /**THESE ARE CLICKABLE ELEMENTS - how to implement swiper??*/
 
     @FindBy(id = "add_layer_button")
-    WebElement addingLayer;
+    WebElement adding_Layer;
 
     @FindBy(id = "Layer_removeButtonSingleOption__CITWh")
-    WebElement removingLayer;
+    WebElement removing_Layer;
 
 
     @FindBy(id = "next_button_layer_options")//(id = "next_button_layer_options")#next_button_layer_options //*[@id="next_button_layer_options"]
-    WebElement nextButtonLayer;
+    WebElement btn_next_layer;
 
     @FindAll({
             @FindBy(className = "inputContainer"),
             @FindBy(className = "WidthInput_WidthInput__31nio")
     })
-    WebElement inputField;
+    WebElement input_field;
 
     @FindBy(id = "next_button_measurements")
-    WebElement nextButtonMeasure;
+    WebElement btn_next_measurements;
 
     @FindBy(id = "true")
-    WebElement adding15cm;
+    WebElement adding_15;
+
 
     @FindBy(id = "false")
-    WebElement notAdding15CM;
+    WebElement adding_0;
 
     @FindBy(id = "next_button_addional_measurements")
     //(id = "next_button_addional_measurements")
-    WebElement nextButtonAdditional;
+    WebElement btn_next_additional;
 
     @FindBy(id = "ceiling")
-    WebElement ceilingPicker;
+    WebElement ceiling_picker;
 
     @FindBy(id = "wall")
     WebElement wallPicker;
@@ -92,16 +94,34 @@ public class VidgaPageObject extends BasePage {
     @FindBy(id = "white")
     WebElement colourPicker;
 
+    /** THESE ARE SPECIFIC ITALIAN CLICKABLE BUTTONS*/
     /*********************/
 
-    @FindBy(xpath = "/html/body/iframe")
-    WebElement silentFrame;
+    @FindBy (id ="silver")
+    WebElement silver_picker;
+
+
+
+
+
+
+
+
     /**INTRODUCTORY METHODS*/
 
-    public VidgaPageObject(WebDriver driver) {
+    public VidgaPOItaly(WebDriver driver) {
         super(driver);
     }
 
+
+    public String getAddres() {
+        return PAGE_ADDRESS_ITA;
+    }
+/*
+       public void setAddress(String address) {
+        this.pageAddress = address;
+    }
+*/
     public void verifyPageIsLoaded() {
         waitForElementToAppear(By.className("page-title"));
         Assert.assertTrue(pageTitle.isDisplayed());
@@ -120,7 +140,7 @@ public class VidgaPageObject extends BasePage {
 
     public void verifyIsPresent() {
         waitForElementToAppear(By.id("next_button_layer_options"));
-        Assert.assertTrue(nextButtonLayer.isDisplayed());
+        Assert.assertTrue(btn_next_layer.isDisplayed());
         System.out.println("next is displayed");
     }
 
@@ -128,31 +148,31 @@ public class VidgaPageObject extends BasePage {
 
     public void addLayer() {
         waitForElementToBeClickable(By.id ("add_layer_button"));
-        javaScriptExecutorClick(addingLayer);
+        javaScriptExecutorClick(adding_Layer);
         waitForElementToAppear(By.id("next_button_layer_options"));
-        javaScriptExecutorClick(nextButtonMeasure);
+        javaScriptExecutorClick(btn_next_measurements);
 
     }
 
     public void confirmMeasurementsNoInput(){
         waitForElementToAppear(By.id("next_button_measurements"));
-        if (nextButtonMeasure.isDisplayed()){System.out.println("next Measurements");}
+        if (btn_next_measurements.isDisplayed()){System.out.println("next Measurements");}
 
 
     }
 
     public void add15CM(){
 
-        javaScriptExecutorClick(adding15cm);
-        Assert.assertTrue(adding15cm.isSelected());
+        javaScriptExecutorClick(adding_15);
+        Assert.assertTrue(adding_15.isSelected());
         System.out.println("adding 15 cm");
-        javaScriptExecutorClick(nextButtonAdditional);
+        javaScriptExecutorClick(btn_next_additional);
 
 
     }
 
     public void chooseCeiling(){
-        javaScriptExecutorClick(ceilingPicker);
+        javaScriptExecutorClick(ceiling_picker);
 
     }
 
@@ -162,10 +182,12 @@ public class VidgaPageObject extends BasePage {
         System.out.println("Summary of the products is displayed");
     }
 
-    public void switchToSilentFrame (){
-        switchToFrame(silentFrame);
+    public void chooseSilver(){
+        javaScriptExecutorClick(silver_picker);
 
     }
+
+
 
 
 }

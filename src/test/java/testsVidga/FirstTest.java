@@ -1,8 +1,9 @@
 package testsVidga;
 
 import org.testng.annotations.Test;
-import pageObjects.IkeaTitlePageObject;
-import pageObjects.VidgaPageObject;
+import pageObjects.ITA.VidgaPOItaly;
+import pageObjects.SWE.IkeaTitlePageObject;
+import pageObjects.SWE.VidgaPOSweden;
 
 public class FirstTest extends BaseTest {
 
@@ -10,27 +11,43 @@ public class FirstTest extends BaseTest {
     @Test
     public void ikeaHomepageTests() {
         IkeaTitlePageObject ikea = new IkeaTitlePageObject(getDriver());
-        ikea.getAddress  ("https://www.ikea.se");
-        ikea.managePage();
+        ikea.navigateToPage  ("https://www.ikea.se");
         ikea.verifyIsPresent();
         ikea.clickOnPictureTitle();
 
     }
 
     @Test
-    public void firstTestinginLive() {
+    public void first_test_Swedish_Live() {
 
 
-        VidgaPageObject vidga = new VidgaPageObject(getDriver());
-        vidga.getAddress("https://www.ikea.com/se/sv/planner/vidga-planner/");
-        vidga.managePage();
-        vidga.verifyPageIsLoaded();
-        vidga.verifySwitchFrame();
-        vidga.addLayer();
-        vidga.confirmMeasurementsNoInput();
-        vidga.add15CM();
-        vidga.chooseCeiling();
-        vidga.verifySummaryPresent();
+        VidgaPOSweden vidgaSE = new VidgaPOSweden(getDriver());
+        vidgaSE.navigateToPage(vidgaSE.getAddres());
+        vidgaSE.verifyPageIsLoaded();
+        vidgaSE.verifySwitchFrame();
+        vidgaSE.addLayer();
+        vidgaSE.confirmMeasurementsNoInput();
+        vidgaSE.add15CM();
+        vidgaSE.chooseCeiling();
+        vidgaSE.verifySummaryPresent();
+
+    }
+
+
+    @Test
+    public void first_test_Italian_Live() {
+
+
+        VidgaPOItaly vidgaIT = new VidgaPOItaly(getDriver());
+        vidgaIT.navigateToPage(vidgaIT.getAddres());
+        vidgaIT.verifyPageIsLoaded();
+        vidgaIT.verifySwitchFrame();
+        vidgaIT.addLayer();
+        vidgaIT.confirmMeasurementsNoInput();
+        vidgaIT.add15CM();
+        vidgaIT.chooseCeiling();
+        vidgaIT.chooseSilver();
+        vidgaIT.verifySummaryPresent();
 
     }
 }

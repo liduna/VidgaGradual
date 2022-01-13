@@ -45,14 +45,12 @@ public class BasePage {
     protected void waitForElementToBeClickable(By locator) {
         wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
-    public void getAddress(String address) {
+    public void navigateToPage(String address) {
         this.driver.get(address);
     }
+/*
 
-    public void managePage() {
-        this.driver.manage().window().maximize();
-    }
-
+*/
 
 
 

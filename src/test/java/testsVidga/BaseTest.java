@@ -33,9 +33,9 @@ public class BaseTest {
         } else {
             driver = new ChromeDriver();
         }
-
-
+        this.driver.manage().window().maximize();
     }
+
 
 
     /*    @AfterSuite
@@ -49,15 +49,13 @@ public class BaseTest {
     public WebDriver getDriver() {
         return driver;
     }
+
 /*
     public void getAddress(String address) {
         this.driver.get(address);
     }
 
-    public void managePage() {
-        this.driver.manage().window().maximize();
-    }
-*/
+   */
 
 }
 
