@@ -146,7 +146,8 @@ public class VidgaPageObject extends BasePage {
         javaScriptExecutorClick(adding15cm);
         Assert.assertTrue(adding15cm.isSelected());
         System.out.println("adding 15 cm");
-        nextButtonAdditional.click();
+        javaScriptExecutorClick(nextButtonAdditional);
+
 
     }
 
