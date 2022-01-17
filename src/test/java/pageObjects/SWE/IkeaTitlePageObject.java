@@ -9,6 +9,8 @@ import pageObjects.BasePage;
 
 public class IkeaTitlePageObject extends BasePage {
 
+    private String PAGE_TITLE_SWE = "https://www.ikea.com/se/sv/";
+
 
     @FindBy(id="f2e60fe1-c4f4-11eb-9eb1-7b097c951065")
     WebElement pageTitle;
@@ -20,18 +22,24 @@ public class IkeaTitlePageObject extends BasePage {
         super(driver);
     }
 
+    public String getAddres() {
+        return PAGE_TITLE_SWE;
+    }
+
 
     public void verifyIsPresent() {
-        waitForElementToAppear(By.id("f2e60fe1-c4f4-11eb-9eb1-7b097c951065"));
+        waitForElementToAppear(By.className("hnf-header__logo"));
         Assert.assertTrue(pageTitle.isDisplayed());
         System.out.println("title is displayed");
     }
 
     public void clickOnPictureTitle(){
         waitForElementToAppear(By.className( "pub__curated-gallery__item"));
+
+    }
+    public void verifyItemPageOpened(){
         Assert.assertTrue(pageTitle.isDisplayed());
         System.out.println("Picture is displayed");
         pictureTitle.click();
-
     }
 }

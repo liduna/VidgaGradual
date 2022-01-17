@@ -16,13 +16,13 @@ import java.util.concurrent.TimeUnit;
 public class BaseTest {
 
 
-    //public static final long TIMEOUT = 10;
+    //public static final long TIMEOUT = 15;
     private WebDriver driver;
 
 
     @BeforeSuite
     public void beforeSuite() {
-        System.setProperty("webdriver.chrome.driver", "C:\\bin\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:\\drivers\\chromedriver.exe");
         String headless = System.getProperty("headless");
 
         ChromeDriverManager.chromedriver();

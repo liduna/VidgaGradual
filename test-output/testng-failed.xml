@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [All Test Suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="C:/Users/ludcha/IdeaProjects/VidgaGradual(failed)">
+    <classes>
+      <class name="testsVidga.testSWE.testBasicFlowSWE">
+        <methods>
+          <include name="ikeaHomepageTests"/>
+          <include name="beforeSuite"/>
+          <include name="first_test_Swedish_Live"/>
+        </methods>
+      </class> <!-- testsVidga.testSWE.testBasicFlowSWE -->
+      <class name="testsVidga.testITA.TestBasicFlowITA">
+        <methods>
+          <include name="dropDown_test_Italian_Live"/>
+          <include name="beforeSuite"/>
+        </methods>
+      </class> <!-- testsVidga.testITA.TestBasicFlowITA -->
+    </classes>
+  </test> <!-- C:/Users/ludcha/IdeaProjects/VidgaGradual(failed) -->
+</suite> <!-- Failed suite [All Test Suite] -->

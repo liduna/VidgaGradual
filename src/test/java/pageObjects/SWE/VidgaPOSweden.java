@@ -114,7 +114,7 @@ public class VidgaPOSweden extends BasePage {
     }
 */
     public void verifyPageIsLoaded() {
-        waitForElementToAppear(By.className("page-title"));
+        waitForElementToAppear (By.className("page-title"));
         Assert.assertTrue(pageTitle.isDisplayed());
         System.out.println("title is displayed");
     }
