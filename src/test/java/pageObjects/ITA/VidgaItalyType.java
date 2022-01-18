@@ -1,15 +1,18 @@
 package pageObjects.ITA;
 
+import io.github.bonigarcia.wdm.managers.ChromeDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import pageObjects.BasePage;
+import pageObjects.SWE.VidgaPOSweden;
 
-public class VidgaPOItaly extends BasePage {
+public class VidgaItalyType extends BasePage {
 
     private String PAGE_ADDRESS_ITA = "https://www.ikea.com/it/it/planner/vidga-planner//";
 
@@ -132,8 +135,51 @@ public class VidgaPOItaly extends BasePage {
 
     /**INTRODUCTORY METHODS*/
 
-    public VidgaPOItaly(WebDriver driver) {
+    public VidgaItalyType(WebDriver driver) {
         super(driver);
+    }
+
+
+    public static class Initializer {
+
+        private WebDriver driver;
+
+
+        public VidgaItalyType startApp(String browser) {
+
+
+            switch (browser) {
+                case "chrome":
+                    System.setProperty("webdriver.chrome.driver", "C:\\drivers\\chromedriver.exe");
+
+                    /** this I have no idea what it is about */
+
+                    String headless = System.getProperty("headless");
+
+                    ChromeDriverManager.chromedriver();
+                    if ("true".equals(headless)) {
+                        ChromeOptions chromeOptions = new ChromeOptions();
+                        chromeOptions.addArguments("--headless");
+                        driver = new ChromeDriver(chromeOptions);
+                    } else {
+                        driver = new ChromeDriver();
+                    }
+
+                    this.driver.manage().window().maximize();
+
+                    break;
+
+
+          /*      case "firefox":
+                    getDriver();
+                    break;
+                case "edge":
+                    getDriver();
+                    break;
+            */
+            }
+            VidgaItalyType vidgaIT = new VidgaItalyType(driver); return  vidgaIT;
+        }
     }
 
 

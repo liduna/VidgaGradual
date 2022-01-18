@@ -1,3 +1,5 @@
+
+/*
 package testsVidga;
 
 import io.github.bonigarcia.wdm.managers.ChromeDriverManager;
@@ -15,30 +17,49 @@ import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
 
+
+    //public static final long TIMEOUT = 15;
     private WebDriver driver;
+
 
     @BeforeSuite
     public void beforeSuite() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Drivers\\chromedriver.exe");
-        driver = new ChromeDriver();
-        this.driver.manage().window().maximize();
+        System.setProperty("webdriver.chrome.driver", "C:\\drivers\\chromedriver.exe");
+        String headless = System.getProperty("headless");
 
-    }
-
-    @AfterSuite
-    public void afterSuite() {
-        if (null != driver) {
-            driver.close();
-            driver.quit();
+        ChromeDriverManager.chromedriver();
+        if ("true".equals(headless)) {
+            ChromeOptions chromeOptions = new ChromeOptions();
+            chromeOptions.addArguments("--headless");
+            driver = new ChromeDriver(chromeOptions);
+        } else {
+            driver = new ChromeDriver();
         }
+        this.driver.manage().window().maximize();
     }
+
+
+/*
+       @AfterSuite
+        public void afterSuite() {
+            if (null != driver) {
+                driver.close();
+                driver.quit();
+            }
+        }
 
     public WebDriver getDriver() {
         return driver;
-
     }
 
-}
+/*
+    public void getAddress(String address) {
+        this.driver.get(address);
+    }
+
+   */
+
+
 
 
 
