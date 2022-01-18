@@ -22,13 +22,6 @@ public class BasePage {
         PageFactory.initElements(driver, this);
     }
 
-  /*  public void getAddress(String address){
-        this.driver.get(address);
-    }
-    public void managePage(){
-        this.driver.manage().window().maximize();
-    }
-*/
     protected void switchToFrame(WebElement element){
       this.driver.switchTo().frame(element);
   }

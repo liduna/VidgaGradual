@@ -10,10 +10,9 @@ public class testBasicFlowSWE extends BaseTest {
     @Test
     public void ikeaHomepageTests() {
         IkeaTitlePageObject ikea = new IkeaTitlePageObject(getDriver());
-        ikea.navigateToPage  (ikea.getAddres());
+        ikea.navigateToPage  ("https://www.ikea.se");
         ikea.verifyIsPresent();
         ikea.clickOnPictureTitle();
-        ikea.verifyItemPageOpened();
 
     }
 
@@ -30,12 +29,6 @@ public class testBasicFlowSWE extends BaseTest {
         vidgaSE.add15CM();
         vidgaSE.chooseCeiling();
         vidgaSE.verifySummaryPresent();
-
-    }
-
-    @Test
-    public void testPriceAmount(){
-
 
     }
 }
