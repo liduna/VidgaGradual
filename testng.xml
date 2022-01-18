@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="C:/Users/ZenBook PRO/Desktop/MVT20/testdesign/VidgaGradualClone">
+        <classes>
+            <class name="testsVidga.testITA.TestBasicFlowITA">
+                <methods>
+                    <include name="testAddPanel1"/>
+                    <include name="testAddPanel2"/>
+                    <include name="first_test_Italian_Live"/>
+                    <include name="dropDown_test_Italian_Live"/>
+                </methods>
+            </class>
+            <class name="testsVidga.testSWE.testBasicFlowSWE">
+                <methods>
+                    <include name="ikeaHomepageTests"/>
+                    <include name="first_test_Swedish_Live"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
