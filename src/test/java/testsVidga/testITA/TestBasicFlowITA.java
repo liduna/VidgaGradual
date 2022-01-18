@@ -1,14 +1,17 @@
 package testsVidga.testITA;
 
 import org.testng.annotations.Test;
-import pageObjects.ITA.VidgaPOItaly;
-import testsVidga.BaseTest;
+import pageObjects.ITA.VidgaItalyType;
+import pageObjects.SWE.VidgaPOSweden;
 
-public class TestBasicFlowITA extends BaseTest {
+
+public class TestBasicFlowITA  {
 
     @Test
     public void testAddPanel1(){
-        VidgaPOItaly vidgaIT = new VidgaPOItaly(getDriver());
+        VidgaItalyType.Initializer init = new VidgaItalyType.Initializer();
+        VidgaItalyType vidgaIT = init.startApp("chrome");
+
         vidgaIT.navigateToPage(vidgaIT.getAddres());
         vidgaIT.verifyPageIsLoaded();
         vidgaIT.verifySwitchFrame();
@@ -23,7 +26,8 @@ public class TestBasicFlowITA extends BaseTest {
      */
     @Test
     public void testAddPanel2(){
-        VidgaPOItaly vidgaIT = new VidgaPOItaly(getDriver());
+        VidgaItalyType.Initializer browser = new VidgaItalyType.Initializer();
+        VidgaItalyType vidgaIT = browser.startApp("chrome");
         vidgaIT.navigateToPage(vidgaIT.getAddres());
         vidgaIT.verifyPageIsLoaded();
         vidgaIT.verifySwitchFrame();
@@ -35,7 +39,8 @@ public class TestBasicFlowITA extends BaseTest {
     public void first_test_Italian_Live() {
 
 
-        VidgaPOItaly vidgaIT = new VidgaPOItaly(getDriver());
+        VidgaItalyType.Initializer browser = new VidgaItalyType.Initializer();
+        VidgaItalyType vidgaIT = browser.startApp("chrome");
         vidgaIT.navigateToPage(vidgaIT.getAddres());
         vidgaIT.verifyPageIsLoaded();
         vidgaIT.verifySwitchFrame();
@@ -52,7 +57,8 @@ public class TestBasicFlowITA extends BaseTest {
     public void dropDown_test_Italian_Live() {
 
 
-        VidgaPOItaly vidgaIT = new VidgaPOItaly(getDriver());
+        VidgaItalyType.Initializer browser = new VidgaItalyType.Initializer();
+        VidgaItalyType vidgaIT = browser.startApp("chrome");
         vidgaIT.navigateToPage(vidgaIT.getAddres());
         vidgaIT.verifyPageIsLoaded();
         vidgaIT.verifySwitchFrame();

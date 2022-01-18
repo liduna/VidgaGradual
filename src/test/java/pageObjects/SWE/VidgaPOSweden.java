@@ -1,8 +1,11 @@
 package pageObjects.SWE;
 
+import io.github.bonigarcia.wdm.managers.ChromeDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
@@ -12,7 +15,9 @@ public class VidgaPOSweden extends BasePage {
 
     private String PAGE_ADDRESS_SWE = "https://www.ikea.com/se/sv/planner/vidga-planner/";
 
-    /**THESE ARE INTRODUCTORY ELEMENTS*/
+    /**
+     * THESE ARE INTRODUCTORY ELEMENTS
+     */
 
     @FindBy(id = "f2e60fe1-c4f4-11eb-9eb1-7b097c951065")
     WebElement pageIkeaTitle;
@@ -29,7 +34,7 @@ public class VidgaPOSweden extends BasePage {
     @FindBy(id = "vidga-application")
     WebElement prodFrame;
 
-    @FindBy (xpath ="//*[@id='root']/div/div[1]/img")
+    @FindBy(xpath = "//*[@id='root']/div/div[1]/img")
     WebElement introPicutre;
 
     @FindBy(css = "#root > div > div.WhatsIncluded_wrapper__17GYG > h3")
@@ -37,8 +42,9 @@ public class VidgaPOSweden extends BasePage {
     /*******************************/
 
 
-
-    /**THESE ARE CLICKABLE ELEMENTS - how to implement swiper??*/
+    /**
+     * THESE ARE CLICKABLE ELEMENTS - how to implement swiper??
+     */
 
     @FindBy(id = "add_layer_button")
     WebElement adding_Layer;
@@ -98,23 +104,69 @@ public class VidgaPOSweden extends BasePage {
 
     @FindBy(xpath = "/html/body/iframe")
     WebElement silentFrame;
-    /**INTRODUCTORY METHODS*/
+
+    /**
+     * INTRODUCTORY METHODS
+     */
 
     public VidgaPOSweden(WebDriver driver) {
         super(driver);
+    }
+
+    public static class Initializer {
+
+        private WebDriver driver;
+
+
+        public VidgaPOSweden startApp(String browser) {
+
+
+            switch (browser) {
+                case "chrome":
+                    System.setProperty("webdriver.chrome.driver", "C:\\drivers\\chromedriver.exe");
+
+                    /** this I have no idea what it is about */
+
+                    String headless = System.getProperty("headless");
+
+                    ChromeDriverManager.chromedriver();
+                    if ("true".equals(headless)) {
+                        ChromeOptions chromeOptions = new ChromeOptions();
+                        chromeOptions.addArguments("--headless");
+                        driver = new ChromeDriver(chromeOptions);
+                    } else {
+                        driver = new ChromeDriver();
+                    }
+
+                    this.driver.manage().window().maximize();
+
+                    break;
+
+
+          /*      case "firefox":
+                    getDriver();
+                    break;
+                case "edge":
+                    getDriver();
+                    break;
+            */
+            }
+            VidgaPOSweden vidgaSEtype = new VidgaPOSweden(driver); return  vidgaSEtype;
+        }
     }
 
 
     public String getAddres() {
         return PAGE_ADDRESS_SWE;
     }
-/*
-       public void setAddress(String address) {
-        this.pageAddress = address;
-    }
-*/
+
+    /*
+           public void setAddress(String address) {
+            this.pageAddress = address;
+        }
+    */
     public void verifyPageIsLoaded() {
-        waitForElementToAppear (By.className("page-title"));
+        waitForElementToAppear(By.className("page-title"));
         Assert.assertTrue(pageTitle.isDisplayed());
         System.out.println("title is displayed");
     }
@@ -124,7 +176,9 @@ public class VidgaPOSweden extends BasePage {
         switchToFrame(prodFrame);
         waitForElementToAppear(By.xpath("//*[@id='root']/div/div[1]/img"));
         Assert.assertTrue(introPicutre.isDisplayed());
-        if ((introPicutre.isDisplayed())){System.out.println("picture");}
+        if ((introPicutre.isDisplayed())) {
+            System.out.println("picture");
+        }
 
 
     }
@@ -135,24 +189,28 @@ public class VidgaPOSweden extends BasePage {
         System.out.println("next is displayed");
     }
 
-    /**INTERCEPTING ELEMENTS METHODS*/
+    /**
+     * INTERCEPTING ELEMENTS METHODS
+     */
 
     public void addLayer() {
-        waitForElementToBeClickable(By.id ("add_layer_button"));
+        waitForElementToBeClickable(By.id("add_layer_button"));
         javaScriptExecutorClick(adding_Layer);
         waitForElementToAppear(By.id("next_button_layer_options"));
         javaScriptExecutorClick(btn_next_measurements);
 
     }
 
-    public void confirmMeasurementsNoInput(){
+    public void confirmMeasurementsNoInput() {
         waitForElementToAppear(By.id("next_button_measurements"));
-        if (btn_next_measurements.isDisplayed()){System.out.println("next Measurements");}
+        if (btn_next_measurements.isDisplayed()) {
+            System.out.println("next Measurements");
+        }
 
 
     }
 
-    public void add15CM(){
+    public void add15CM() {
 
         javaScriptExecutorClick(adding_15);
         Assert.assertTrue(adding_15.isSelected());
@@ -162,18 +220,18 @@ public class VidgaPOSweden extends BasePage {
 
     }
 
-    public void chooseCeiling(){
+    public void chooseCeiling() {
         javaScriptExecutorClick(ceiling_picker);
 
     }
 
-    public void verifySummaryPresent(){
+    public void verifySummaryPresent() {
         //waitForElementToAppear(By.cssSelector("#root > div > div.WhatsIncluded_wrapper__2Y0in > h3"));
         Assert.assertTrue(summary.isDisplayed());
         System.out.println("Summary of the products is displayed");
     }
 
-    public void switchToSilentFrame (){
+    public void switchToSilentFrame() {
         switchToFrame(silentFrame);
 
     }

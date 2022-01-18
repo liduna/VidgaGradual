@@ -1,3 +1,5 @@
+
+/*
 package testsVidga;
 
 import io.github.bonigarcia.wdm.managers.ChromeDriverManager;
@@ -45,7 +47,7 @@ public class BaseTest {
                 driver.quit();
             }
         }
-*/
+
     public WebDriver getDriver() {
         return driver;
     }
@@ -57,7 +59,7 @@ public class BaseTest {
 
    */
 
-}
+
 
 
 
