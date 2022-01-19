@@ -10,9 +10,8 @@ import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 import pageObjects.BasePage;
-import pageObjects.SWE.VidgaPOSweden;
 
-public class VidgaItalyType extends BasePage {
+public class POItalyType extends BasePage {
 
     private String PAGE_ADDRESS_ITA = "https://www.ikea.com/it/it/planner/vidga-planner//";
 
@@ -96,7 +95,7 @@ public class VidgaItalyType extends BasePage {
     WebElement triple_railing;
 
     @FindBy(id = "white")
-    WebElement colourPicker;
+    WebElement white_Picker;
 
     /** THESE ARE SPECIFIC ITALIAN CLICKABLE BUTTONS*/
     /*********************/
@@ -135,7 +134,7 @@ public class VidgaItalyType extends BasePage {
 
     /**INTRODUCTORY METHODS*/
 
-    public VidgaItalyType(WebDriver driver) {
+    public POItalyType(WebDriver driver) {
         super(driver);
     }
 
@@ -145,7 +144,7 @@ public class VidgaItalyType extends BasePage {
         private WebDriver driver;
 
 
-        public VidgaItalyType startApp(String browser) {
+        public POItalyType startApp(String browser) {
 
 
             switch (browser) {
@@ -178,34 +177,34 @@ public class VidgaItalyType extends BasePage {
                     break;
             */
             }
-            VidgaItalyType vidgaIT = new VidgaItalyType(driver); return  vidgaIT;
+            POItalyType vidgaIT = new POItalyType(driver); return  vidgaIT;
+        }
+
+        public void quit(){
+            driver.quit();
         }
     }
 
 
-    public String getAddres() {
-        return PAGE_ADDRESS_ITA;
+    public String getAddres(String address) {
+        return address;
     }
 /*
        public void setAddress(String address) {
         this.pageAddress = address;
     }
 */
-    public void verifyPageIsLoaded() {
+    public void verifyPage() {
         waitForElementToAppear(By.className("page-title"));
         Assert.assertTrue(pageTitle.isDisplayed());
         System.out.println("title is displayed");
-    }
-
-    public void verifySwitchFrame() {
         waitForElementToAppear(By.id("vidga-application"));
         switchToFrame(prodFrame);
         waitForElementToAppear(By.xpath("//*[@id='root']/div/div[1]/img"));
         Assert.assertTrue(introPicutre.isDisplayed());
         if ((introPicutre.isDisplayed())){System.out.println("picture");}
-
-
     }
+
 
     public void verifyIsPresent() {
         waitForElementToAppear(By.id("next_button_layer_options"));
@@ -248,10 +247,8 @@ public class VidgaItalyType extends BasePage {
 
     }
 
-    public void verifySummaryPresent(){
-        //waitForElementToAppear(By.cssSelector("#root > div > div.WhatsIncluded_wrapper__2Y0in > h3"));
-        Assert.assertTrue(summary.isDisplayed());
-        System.out.println("Summary of the products is displayed");
+    public WebElement getSummary(){
+       return summary;
     }
 
     public void choosTripleRailings(){
@@ -309,5 +306,10 @@ public class VidgaItalyType extends BasePage {
         javaScriptExecutorClick(silver_picker);
 
     }
+    public void chooseWhite(){
+        javaScriptExecutorClick(white_Picker);
+
+    }
+
 
 }

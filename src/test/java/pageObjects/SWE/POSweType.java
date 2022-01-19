@@ -6,12 +6,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 import pageObjects.BasePage;
 
-public class VidgaPOSweden extends BasePage {
+public class POSweType extends BasePage {
 
     private String PAGE_ADDRESS_SWE = "https://www.ikea.com/se/sv/planner/vidga-planner/";
 
@@ -109,23 +110,26 @@ public class VidgaPOSweden extends BasePage {
      * INTRODUCTORY METHODS
      */
 
-    public VidgaPOSweden(WebDriver driver) {
+    public POSweType(WebDriver driver) {
         super(driver);
     }
+
+
+
+    /** This is nested class that is taking care of initializing driver */
 
     public static class Initializer {
 
         private WebDriver driver;
 
 
-        public VidgaPOSweden startApp(String browser) {
+        public POSweType startApp(String browser) {
 
 
             switch (browser) {
                 case "chrome":
-                    System.setProperty("webdriver.chrome.driver", "C:\\drivers\\chromedriver.exe");
+                    System.setProperty("webdriver.chrome.driver", "C:\\Drivers\\chromedriver.exe");
 
-                    /** this I have no idea what it is about */
 
                     String headless = System.getProperty("headless");
 
@@ -141,23 +145,27 @@ public class VidgaPOSweden extends BasePage {
                     this.driver.manage().window().maximize();
 
                     break;
-
-
-          /*      case "firefox":
-                    getDriver();
+                case "firefox":
+                    System.setProperty("webdriver.gecko.driver", "C:\\Drivers\\geckodriver.exe");
+                    driver = new FirefoxDriver();
+                    this.driver.manage().window().maximize();
                     break;
-                case "edge":
-                    getDriver();
-                    break;
-            */
+
             }
-            VidgaPOSweden vidgaSEtype = new VidgaPOSweden(driver); return  vidgaSEtype;
+            POSweType vidgaSEtype = new POSweType(driver);
+            return vidgaSEtype;
+
+
+        }
+
+        public void quit(){
+            driver.quit();
         }
     }
 
 
-    public String getAddres() {
-        return PAGE_ADDRESS_SWE;
+    public String getAddres(String address) {
+        return address;
     }
 
     /*
@@ -165,23 +173,18 @@ public class VidgaPOSweden extends BasePage {
             this.pageAddress = address;
         }
     */
-    public void verifyPageIsLoaded() {
+    public void verifyPage() {
         waitForElementToAppear(By.className("page-title"));
         Assert.assertTrue(pageTitle.isDisplayed());
-        System.out.println("title is displayed");
-    }
 
-    public void verifySwitchFrame() {
         waitForElementToAppear(By.id("vidga-application"));
         switchToFrame(prodFrame);
         waitForElementToAppear(By.xpath("//*[@id='root']/div/div[1]/img"));
         Assert.assertTrue(introPicutre.isDisplayed());
-        if ((introPicutre.isDisplayed())) {
-            System.out.println("picture");
-        }
-
 
     }
+
+
 
     public void verifyIsPresent() {
         waitForElementToAppear(By.id("next_button_layer_options"));
@@ -203,10 +206,8 @@ public class VidgaPOSweden extends BasePage {
 
     public void confirmMeasurementsNoInput() {
         waitForElementToAppear(By.id("next_button_measurements"));
-        if (btn_next_measurements.isDisplayed()) {
-            System.out.println("next Measurements");
-        }
 
+        Assert.assertTrue(btn_next_measurements.isDisplayed());
 
     }
 
@@ -214,7 +215,7 @@ public class VidgaPOSweden extends BasePage {
 
         javaScriptExecutorClick(adding_15);
         Assert.assertTrue(adding_15.isSelected());
-        System.out.println("adding 15 cm");
+
         javaScriptExecutorClick(btn_next_additional);
 
 
@@ -225,15 +226,20 @@ public class VidgaPOSweden extends BasePage {
 
     }
 
-    public void verifySummaryPresent() {
+    public WebElement getSummary() {
+         return summary;
         //waitForElementToAppear(By.cssSelector("#root > div > div.WhatsIncluded_wrapper__2Y0in > h3"));
-        Assert.assertTrue(summary.isDisplayed());
-        System.out.println("Summary of the products is displayed");
+
     }
 
     public void switchToSilentFrame() {
         switchToFrame(silentFrame);
 
+    }
+
+
+    public void quitBrowser(){
+        driver.quit();
     }
 
 
